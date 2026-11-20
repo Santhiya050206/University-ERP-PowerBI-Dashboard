@@ -1,0 +1,139 @@
+erDiagram
+    DEPARTMENTS ||--o{ STUDENTS : has
+    DEPARTMENTS ||--o{ FACULTY : employs
+    DEPARTMENTS ||--o{ SUBJECTS : offers
+    STUDENTS ||--o{ ALUMNI : becomes
+    STUDENTS ||--o{ PLACEMENTS : gets
+    STUDENTS ||--o{ FACT_FEES : pays
+    STUDENTS ||--o{ SCHOLARSHIPS : receives
+    STUDENTS ||--o{ INTERNSHIPS : does
+    STUDENTS ||--o{ ATTENDANCE : records
+    STUDENTS ||--o{ EXAMS : writes
+    STUDENTS ||--o{ COURSE_REGISTRATION : enrolls
+    STUDENTS ||--o{ EVENTS : joins
+    STUDENTS ||--o{ LIBRARY : borrows
+    STUDENTS ||--o{ HOSTEL : lives_in
+    STUDENTS ||--o{ STUDENT_CLUBS : belongs_to
+    STUDENTS ||--o{ TRANSPORT : uses
+    DIM_DATE ||--o{ ATTENDANCE : dated
+
+    DEPARTMENTS {
+        string Department_ID PK
+        string Department_Name
+    }
+    STUDENTS {
+        string Student_ID PK
+        string Department_ID FK
+        string Gender
+        string City
+        int Age
+        string Age_Group
+        int Admission_Year
+    }
+    FACULTY {
+        string Faculty_ID PK
+        string Department_ID FK
+        string Faculty_Name
+        string Designation
+    }
+    SUBJECTS {
+        string Subject_ID PK
+        string Department_ID FK
+        string Subject_Name
+        int Credits
+    }
+    ALUMNI {
+        string Alumni_ID PK
+        string Student_ID FK
+        int Graduation_Year
+        string Current_Status
+        boolean Valid_Grad_Flag
+    }
+    PLACEMENTS {
+        string Placement_ID PK
+        string Student_ID FK
+        string Status
+        string Company
+        decimal CTC_LPA
+        string CTC_Band
+    }
+    FACT_FEES {
+        string Fee_ID PK
+        string Student_ID FK
+        int Fee_Amount
+        int Amount_Paid_Clean
+        int Overpaid_Amount
+        int Balance_Due
+        string Fee_Status_Clean
+    }
+    SCHOLARSHIPS {
+        string Scholarship_ID PK
+        string Student_ID FK
+        string Type
+        int Amount
+    }
+    INTERNSHIPS {
+        string Internship_ID PK
+        string Student_ID FK
+        string Company
+        int Duration_Months
+    }
+    ATTENDANCE {
+        string Attendance_ID PK
+        string Student_ID FK
+        date Date FK
+        string Status
+    }
+    EXAMS {
+        string Exam_ID PK
+        string Student_ID FK
+        string Exam_Type
+        int Marks
+        string Grade
+        string Result
+    }
+    COURSE_REGISTRATION {
+        string Registration_ID PK
+        string Student_ID FK
+        string Course
+        string Status
+    }
+    EVENTS {
+        string Event_ID PK
+        string Student_ID FK
+        string Event_Name
+        string Result
+    }
+    LIBRARY {
+        string Library_ID PK
+        string Student_ID FK
+        string Book_Name
+        string Status
+    }
+    HOSTEL {
+        string Hostel_ID PK
+        string Student_ID FK
+        string Block
+        int Room
+        string Type
+        string Room_Key
+    }
+    STUDENT_CLUBS {
+        string Club_ID PK
+        string Student_ID FK
+        string Club_Name
+        string Role
+    }
+    TRANSPORT {
+        string Transport_ID PK
+        string Student_ID FK
+        string Route
+        string Vehicle
+    }
+    DIM_DATE {
+        date Date PK
+        int Year
+        int MonthNo
+        string Month
+        string Quarter
+    }
